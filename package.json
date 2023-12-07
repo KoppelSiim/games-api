@@ -1,0 +1,31 @@
+{
+  "name": "games-api",
+  "version": "1.0.0",
+  "description": "Gamestore",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KoppelSiim/games-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KoppelSiim/games-api/issues"
+  },
+  "homepage": "https://github.com/KoppelSiim/games-api#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "swagger-ui-express": "^5.0.0",
+    "yamljs": "^0.3.0"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
