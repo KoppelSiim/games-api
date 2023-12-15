@@ -3,7 +3,7 @@ const mariadb = require("mariadb")
 const express = require('express')
 const cors = require('cors')
 const app = express()
-//const port = 8080
+const port = 8080
 const swaggerUI = require("swagger-ui-express")
 const yamljs = require('yamljs')
 const swaggerDocument = yamljs.load("./docs/swagger.yaml")
@@ -17,9 +17,9 @@ const cool = mariadb.createPool({
     connectionLimit: 5
 })
 
-
 app.use(cors())
 app.use(express.json())
+require("./routes/app_routes")
 
 const games = [
     {id: 1, name:"LOL", price: 29.99},
