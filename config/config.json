@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "d120917_storeuse",
+    "password": "Teemetoredapoe1",
+    "database": "d120917_gamestore",
+    "host": "d120917.mysql.zonevs.eu",
+    "dialect": "mariadb"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
