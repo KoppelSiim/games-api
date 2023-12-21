@@ -35,8 +35,9 @@ exports.createNew = async (req, res) => {
 exports.deleteById = async (req, res) => {
     let result
     try {
-        result = await Game.destroy({where: {id: req.params.id}})
+        result = await Game.destroy({where: {gameId: req.params.id}})
     } catch (error) {
+        console.log("Deleting game with ID:", req.params.id);
         console.log("GamesDelete: ", error)
         res.status(500).send({error:"Something has gone wrong in our monkey pit, lead orangutan has been deployed to fix it up"})
         return

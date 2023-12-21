@@ -1,4 +1,4 @@
-module.exports = (sequelize,Sequelize) => {
+module.exports = (sequelize, Sequelize) => {
     const Game = sequelize.define("game", {
         gameId: {
             type: Sequelize.INTEGER,
@@ -17,6 +17,11 @@ module.exports = (sequelize,Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: true
         }
-    })
-    return Game
-}
+    }, {
+        tableName: 'games',
+        primaryKey: 'gameId',
+        timestamps: false
+    });
+
+    return Game;
+};
