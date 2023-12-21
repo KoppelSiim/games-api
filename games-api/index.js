@@ -1,11 +1,17 @@
+
+
 require("dotenv").config()
+//dotenv.config({path: 'games-api/.env'});
 const express = require('express');
 const cors = require('cors')
 const app = express();
 //const port = 8080
 
+const port = process.env.PORT || 8080;
+
+
 // siim branch first commit
-const port = process.env.APP_PORT
+//const port = process.env.APP_PORT
 const swaggerUi = require('swagger-ui-express')
 const yamljs = require('yamljs');
 const swaggerDocument = yamljs.load('./docs/swagger.yaml');
@@ -105,6 +111,7 @@ app.delete('/games/:id', (req, res) => {
 
 app.listen(port, async () => {
     console.log(`Api up at: Http://localhost:${port}`)})
+    console.log(port)
 
 function getBaseUrl(req) {
     return req.connection && req.connection.encrypted ? 'https' : 'http' + `://${req.headers.host}`
