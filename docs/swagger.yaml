@@ -1,0 +1,168 @@
+openapi: 3.0.2
+info:
+    title: TARge22Games-Api
+    version: 1.0.0
+    description: 'games example project for targe 22, #gamer4lyfe'
+paths:
+    /games:
+        get:
+            tags:
+                - games
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                List of games:
+                                    value:
+                                        - Team Fortress 2
+                                        - Super Mario Bros
+                                        - Sonic the Hedgehog
+                    description: Returns a list of games
+            summary: get a list of all games from api.
+            description: Returns a list of all games in the API
+        post:
+            requestBody:
+                description: A new game to be created
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/new-game'
+                        examples:
+                            Example of a game:
+                                value:
+                                    name: some text
+                                    price: 47.72
+                                    description: some text
+                required: true
+            tags:
+                - new-game
+            responses:
+                '201':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/new-game'
+                            examples:
+                                Example of a game:
+                                    value:
+                                        name: name of game
+                                        price: 98.08
+                                        description: description of game
+                    description: Game has been created into the array/database
+                '400':
+                    content:
+                        application/json: {}
+                    description: 'One, multiple or all parameters are missing. '
+            summary: Creates a new game
+            description: Creates a new game
+    '/games/{id}':
+        get:
+            tags:
+                - details
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                Details of a game:
+                                    value:
+                                        id: 2
+                                        name: Team Fortress 2
+                                        price: 0
+                                        description: The original proprietor of the microtransaction concept
+                    description: 'Returns full details of a given game, as determined by the id.'
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                Game /w+ was not found:
+                                    value:
+                                        error: Game\w+ was not found within the games array
+                    description: |
+                        Game was not found in the games array with the given id.
+            operationId: id
+            summary: Get full details of a game
+            description: 'Returns full details about a specific game, as determined by id input by the user'
+        delete:
+            tags:
+                - delete-game
+            responses:
+                '204':
+                    description: Game has been deleted
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                Game /w+ was not found:
+                                    value:
+                                        error: Game\w+ was not found within the games array
+                    description: Game was not found within the games array based on the given id
+            description: Removes a game from the array
+        parameters:
+            -
+                examples:
+                    Id of game:
+                        value: '66'
+                name: id
+                description: Id of the game that we require
+                schema:
+                    type: integer
+                in: path
+                required: true
+components:
+    schemas:
+        error:
+            title: Root Type for error
+            description: ''
+            type: object
+            properties:
+                error:
+                    type: string
+            example:
+                error: Error message.
+        new-game:
+            title: Root Type for new-game
+            description: ''
+            required:
+                - price
+                - name
+                - description
+            type: object
+            properties:
+                name:
+                    type: string
+                price:
+                    format: float
+                    type: number
+                description:
+                    type: string
+            example:
+                name: Tetris
+                price: 0.99
+                description: Developed by Alexei Pajitnov
+        delete-game:
+            title: Root Type for delete-game
+            description: ''
+            required:
+                - id
+            type: object
+            properties:
+                id:
+                    format: int32
+                    type: integer
+                    example: '{"id":1}'
+            example:
+                id: 52
